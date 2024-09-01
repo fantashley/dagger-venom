@@ -73,7 +73,7 @@ func (m *DaggerVenom) Test(ctx context.Context, tests *dagger.Directory) (TestRe
 		WithEnvVariable("VENOM_OUTPUT_DIR", resultsPath).
 		WithEnvVariable("VENOM_LIB_DIR", filepath.Join(testsPath, "lib")).
 		WithEnvVariable("VENOM_VERBOSE", "1").
-		WithExec([]string{"/bin/sh", "-c", "/usr/local/venom run ./" + testsDir + "/*.y*ml --html-report; echo -n $? > " + exitCodeFile}).
+		WithExec([]string{"/bin/sh", "-c", "/usr/local/venom run ./" + testsDir + " --html-report; echo -n $? > " + exitCodeFile}).
 		Sync(ctx)
 	if err != nil {
 		return TestResults{}, fmt.Errorf("unexpected error executing tests: %w", err)
